@@ -1468,6 +1468,10 @@ compression@^1.5.2:
     on-headers "~1.0.1"
     vary "~1.1.0"
 
+compromise@^10.3.0:
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/compromise/-/compromise-10.3.0.tgz#8b80852552216bae0a697382c502633341104e63"
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"

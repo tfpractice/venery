@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "compromise": "^10.3.0",
     "fenugreek-collections": "^1.1.1",
     "material-ui": "next",
     "pluralize": "^5.0.0",
