@@ -6,6 +6,7 @@ import { connect, } from 'react-redux';
 
 import { Animals, } from '../../modules';
 import Word from './word';
+import GuessForm from './guessform';
 
 const stateToProps = (state) => {
   console.log('state', state);
@@ -23,6 +24,8 @@ const Game = (props) => {
           setCurrentAnimal
         </Button>
         <Word />
+        <GuessForm />
+
       </Grid>
     </Grid>
   );

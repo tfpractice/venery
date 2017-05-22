@@ -28,11 +28,11 @@ const add = str => ltrs => new Set(ltrs).add(str.toUpperCase());
 const resetL = str => ltrs => new Set();
 const unknowns = getState => new Set(
   (getState().word.toUpperCase().split(''))
-    .filter(c => !getState().guesses.has(c.toUpperCase())));
+    .filter(c => !getState().guesses.letters.has(c.toUpperCase())));
 
 const correctGuess = guess => getState =>
 unknowns(getState).has(guess.toUpperCase()) ||
-  getState().guesses.has(guess.toUpperCase());
+  getState().guesses.letters.has(guess.toUpperCase());
 
 const newGuess = guess => (unk) => {
   console.log('unk', unk);

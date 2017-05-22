@@ -5,7 +5,7 @@ import { animals, } from '../../utils';
 import { actions, } from '../words';
 
 const { resetWord, } = actions;
-const { ANIMAP, } = animals;
+const { ANIMAP, getXRandom, ANIMALS, } = animals;
 
 const add = animal => state => addSet(state)(animal);
 const remove = animal => state => removeSet(state)(animal);
@@ -33,3 +33,17 @@ export const setAnimal = animal => (dispatch) => {
     .then(dispatch)
     .catch(console.error);
 };
+
+export const nextAnimals = (next = getXRandom(ANIMALS, 10)) => (dispatch) => {
+  Promise.resolve(resetAnimals(next))
+    .then(dispatch)
+    .then(setAnimal(first(next)))
+    .then(dispatch)
+    .catch(console.error);
+};
+
+// export const updateCorrect = corr => (dispatch, getState) =>
+// Promise.resolve(
+//   dispatch({ type: UPDATE_CORRECT_ANIMALS, curry: update(corr), }))
+//   .then(x => dispatch(resetAnimals(getState().animals.all.slice(1))))
+//   .catch(console.error);

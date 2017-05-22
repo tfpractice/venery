@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, } from 'react-redux';
 import Paper from 'material-ui/Paper';
-
+import Text from 'material-ui/Typography';
 const mapStateToProps = ({ guesses: { letters, }, }, { chr, }) =>
 ({ isGuessed: (letters).has(chr.toUpperCase()), });
 
@@ -15,9 +15,10 @@ const style = {
 };
 
 const Letter = ({ chr, isGuessed, }) => (
-  <Paper style={style} elevation={5}><b>
-    {isGuessed ? ` ${chr} ` : ' ___ ' }
-  </b>
+  <Paper style={style} elevation={5}>
+    <Text type="display3">
+      {isGuessed ? ` ${chr} ` : ' ___ ' }
+    </Text>
   </Paper>);
 
 export default connect(mapStateToProps)(Letter);
