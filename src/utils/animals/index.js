@@ -1,3 +1,4 @@
+import { asMap, diff, first, } from 'fenugreek-collections';
 import { ANIMARR, missingGroups, } from './data';
 
 // import { first, freqMap, sortFQ, } from '../words';
@@ -6,26 +7,35 @@ import { ANIMARR, missingGroups, } from './data';
 //
 // export const hasFreq = xSet => str => !xSet.has(str);
 //
-// const normalize = s => s.trim().toLowerCase();
-// const split = delim => str => normalize(str).split(delim).map(normalize);
-// const normalizePair = ([ k, v, ]) =>
-// [ normalize(k), ...v.map(normalize).map(split(',')), ];
+const normalize = s => s.trim().toLowerCase();
+const split = delim => str => normalize(str).split(delim).map(normalize);
+const normalizePair = ([ k, v, ]) =>
+[ normalize(k), ...v.map(normalize).map(split(',')), ];
+
+export const ANIMAP = new Map(ANIMARR.map(normalizePair));
+
+export const ANIMALS = [ ...ANIMAP.keys(), ];
+console.log('ANIMALS', ANIMALS);
+
 //
-// export const ANIMAP = new Map(ANIMARR.map(normalizePair));
-// export const ANIMALS = [ ...ANIMAP.keys(), ];
+export const getRandom = arr => arr[Math.floor(Math.random() * arr.length)];
+
 //
-// export const getRandom = arr => arr[Math.floor(Math.random() * arr.length)];
+export const getXRandom = (coll, count) => {
+  let results = [];
+
+  while (results.length < count) {
+    results = results.concat(getRandom(diff(coll)(results)));
+  }
+  return results;
+};
+console.log('getXRandom(ANIMALS', getXRandom(ANIMALS, 4));
+
 //
-// export const getXRandom = (coll, count) => {
-//   let results = [];
-//
-//   while (results.length < count) {
-//     results = results.concat(getRandom(diff(coll)(results)));
-//   }
-//   return results;
-// };
-//
-// export const NAMES = [ ...ANIMAP.values(), ];
+export const NAMES = [ ...ANIMAP.values(), ];
+export const FirstNames = NAMES.map(first);
+console.log('FirstNames', FirstNames);
+
 // export const ALL_NAMES = NAMES.reduce((a = [], c) => a.concat(c), [])
 // .filter(hasFreq(new Set(missingGroups)));
 //
