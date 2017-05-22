@@ -1,6 +1,5 @@
 export const ANIMARR = [
-  [ 'Albatross', [
-    'Rookery', ],],
+  [ 'Albatross', [ 'Rookery', ],],
   [ 'Alligators', [
     'Congregation', ],
   ], [ 'Apes', [

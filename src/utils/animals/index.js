@@ -1,4 +1,3 @@
-import { collections, } from 'turmeric-utils';
 import { ANIMARR, missingGroups, } from './data';
 
 // import { first, freqMap, sortFQ, } from '../words';
