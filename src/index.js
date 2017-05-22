@@ -13,11 +13,11 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <Provider store={getStore()}>
-    <MuiThemeProvider theme={theme} styleManager={styleManager}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <MuiThemeProvider theme={theme} styleManager={styleManager}>
         <App />
-      </BrowserRouter>
-    </MuiThemeProvider>
+      </MuiThemeProvider>
+    </BrowserRouter>
   </Provider>
 , document.getElementById('root'));
 

@@ -5,13 +5,16 @@ import Text from 'material-ui/Typography';
 import { spread, } from 'fenugreek-collections';
 import Letter from './letter';
 
-const stateToProps = ({ word, }) => ({ chars: spread(word.toUpperCase()), });
+const stateToProps = ({ word, }) => {
+  console.log('spread(word.toUpperCase())', spread(word.toUpperCase()));
+  return ({ word, chars: spread(word.toUpperCase()), });
+};
 
-const Word = ({ chars, }) => (
+const Word = ({ chars, word, }) => (
   <Grid container>
     <Grid item>
       <Text type="title">
-        I AM THE word
+        I AM THE word {word}
       </Text>
       {chars.map((chr, i) => <Letter key={i} chr={chr} />)}
     </Grid>
