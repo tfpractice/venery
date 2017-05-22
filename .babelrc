@@ -20,8 +20,11 @@
           "./src"
         ],
         "alias": {
-          "imports": "./imports",
-          "config": "./config"
+          "src": "./",
+          "imports": "./",
+          "utils": "utils",
+          "components": "components",
+          "modules": "modules"
         }
       }
     ]
