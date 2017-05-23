@@ -8,10 +8,8 @@ import Nav from './nav';
 import { Game, } from './game';
 
 const styles = { paddingTop: '5rem', };
-const stateToProps = (state) => {
-  console.log('state', state);
-  return ({ ...state, });
-};
+
+const stateToProps = state => (state);
 
 class Main extends Component {
   render() {
@@ -22,12 +20,8 @@ class Main extends Component {
         <Grid container justify="center" style={styles} >
           <Nav />
           <Grid item sm={12}>
-            <h1> hello </h1>
             <Game />
-            <Switch>
-
-              {/* {renderRoutes(routes)} */}
-            </Switch>
+            <Switch />
           </Grid>
         </Grid>
       </Paper>

@@ -8,14 +8,12 @@ import { Animals, } from '../../modules';
 import Word from './word';
 import GuessForm from './guessform';
 
-const stateToProps = (state) => {
-  console.log('state', state);
-  return state;
-};
+const stateToProps = state => state;
+
 const Game = (props) => {
   console.log('props', props);
   return (
-    <Grid container>
+    <Grid container justify="center" align="center" direction="column">
       <Grid item>
         <Text type="title">
           I AM THE GAME BOARD
@@ -23,9 +21,10 @@ const Game = (props) => {
         <Button accent raised onClick={() => props.setAnimal(props.animals.all[0])}>
           setCurrentAnimal
         </Button>
+      </Grid>
+      <Grid item>
         <Word />
         <GuessForm />
-
       </Grid>
     </Grid>
   );

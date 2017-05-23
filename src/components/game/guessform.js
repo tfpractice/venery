@@ -1,5 +1,4 @@
-import React, { PropTypes, } from 'react';
-import FlatButton from 'material-ui/Button';
+import React from 'react';
 import { Field, } from 'redux-form';
 import { connect, } from 'react-redux';
 
@@ -9,7 +8,8 @@ import { Guesses, } from '../../modules';
 const BaseGuess = ({ handleSubmit, dispatch, onSubmit, reset, }) => (
   <form onSubmit={handleSubmit} >
     <Field
-      name="guess" component={renderText} type="text"
+      name="guess"
+      component={renderText}
       onKeyPress={({ key, }) => Promise.resolve(onSubmit(key)).then(reset)}
     />
   </form>
@@ -17,7 +17,7 @@ const BaseGuess = ({ handleSubmit, dispatch, onSubmit, reset, }) => (
 
 const ReduxGuess = ClearForm(BaseGuess);
 
-const GuessForm = ({ guessLetter, guessForm, formID, dispatch, }) => (
+const GuessForm = ({ guessLetter, guessForm, formID, }) => (
   <ReduxGuess form={'guessChar'} onSubmit={guessLetter} />
   );
 
