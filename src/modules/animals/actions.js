@@ -1,6 +1,6 @@
 import { first, } from 'fenugreek-collections';
 import { addSet, removeSet, } from 'fenugreek-collections';
-import { ADD_ANIMAL, REMOVE_ANIMAL, RESET_ANIMALS, SET_CURRENT_ANIMAL, } from './constants';
+import { ADD_ANIMAL, REMOVE_ANIMAL, RESET_ANIMALS, SET_CURRENT_ANIMAL, UPDATE_CORRECT_ANIMALS, } from './constants';
 import { animals, } from '../../utils';
 import { actions, } from '../words';
 
@@ -10,6 +10,7 @@ const { ANIMAP, getXRandom, ANIMALS, } = animals;
 const add = animal => state => addSet(state)(animal);
 const remove = animal => state => removeSet(state)(animal);
 const set = animals => () => animals;
+const update = next => prv => prv.concat(next);
 
 export const updateCurrent = animal => () => animal;
 export const addAnimal = a =>
@@ -23,6 +24,9 @@ export const resetAnimals = animals =>
 
 export const setCurrentAnimal = anim =>
 ({ type: SET_CURRENT_ANIMAL, curry: updateCurrent(anim), });
+
+export const setCorrect = anim =>
+({ type: UPDATE_CORRECT_ANIMALS, curry: update(anim), });
 
 export const setAnimal = animal => (dispatch) => {
   Promise.resolve(setCurrentAnimal(animal))
@@ -42,8 +46,12 @@ export const nextAnimals = (next = getXRandom(ANIMALS, 10)) => (dispatch) => {
     .catch(console.error);
 };
 
-// export const updateCorrect = corr => (dispatch, getState) =>
-// Promise.resolve(
-//   dispatch({ type: UPDATE_CORRECT_ANIMALS, curry: update(corr), }))
-//   .then(x => dispatch(resetAnimals(getState().animals.all.slice(1))))
-//   .catch(console.error);
+export const updateCorrect = corr => (dispatch, getState) =>
+  Promise.resolve(setCorrect(corr))
+    .then(dispatch)
+    .then(x => resetAnimals(getState().animals.all.slice(1)))
+    .then(dispatch)
+
+  // dispatch({ type: UPDATE_CORRECT_ANIMALS, curry: update(corr), }))
+  // .then(x => dispatch(resetAnimals(getState().animals.all.slice(1))))
+    .catch(console.error);
