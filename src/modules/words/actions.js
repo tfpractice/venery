@@ -1,5 +1,5 @@
 // import { actions, } from '../guesses';
-import { GUESS_WORD, RESET_WORD, } from './constants';
+import { RESET_WORD, } from './constants';
 
 // import { Guesses, } from '../';
 // import { resetGuesses, } from '../guesses/actions';

@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect, } from 'react-redux';
-import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
+import Grid from 'material-ui/Grid';
+import { connect, } from 'react-redux';
 import { spread, } from 'fenugreek-collections';
 
 import Letter from './letter';

@@ -1,11 +1,6 @@
 import { actions, } from '../animals';
-import { CORRECT_GUESS, DECREMENT_REMAINING,
-   GUESS_ACTIONS,
-   GUESS_LETTER,
-    INCORRECT_GUESS,
-INCREMENT_REMAINING,
-REPEAT_GUESS,
- RESET_GUESSES, RESET_REMAINING, } from './constants';
+import { DECREMENT_REMAINING, GUESS_LETTER, INCREMENT_REMAINING, RESET_GUESSES,
+   RESET_REMAINING, } from './constants';
 
 const { updateCorrect, } = actions;
 const dec = () => rem => rem - 1;
@@ -38,14 +33,14 @@ unknowns(getState).has(guess.toUpperCase()) ||
 
 export const guess = str =>
   ({ type: GUESS_LETTER, curry: add(str), });
+  
+export const resetGuesses = () =>
+    ({ type: RESET_GUESSES, curry: resetL(), });
 
 const newGuess = guess => (unk) => {
   console.log('unk', unk);
   return unk.has(guess.toUpperCase());
 };
-
-export const resetGuesses = () =>
-  ({ type: RESET_GUESSES, curry: resetL(), });
 
 const allGuessed = getState => unknowns(getState).size === 0;
 
@@ -57,7 +52,6 @@ export const guessLetter = str => (dispatch, getState) => {
     }
   } else {
     dispatch(guess(str));
-    
     dispatch(decrementRem());
   }
 };

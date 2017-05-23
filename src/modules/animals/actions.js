@@ -1,6 +1,9 @@
 import { addSet, first, removeSet, } from 'fenugreek-collections';
 import { animals, } from '../../utils';
+
 import { actions, } from '../words';
+
+// import { resetWord, } from '../words/actions';
 import { ADD_ANIMAL, REMOVE_ANIMAL, RESET_ANIMALS, SET_CURRENT_ANIMAL,
   UPDATE_CORRECT_ANIMALS, } from './constants';
 
@@ -13,7 +16,8 @@ const set = animals => () => animals;
 const update = next => prv => prv.concat(next);
 const dropFirst = () => ([ first, ...rest ]) => rest;
 
-export const updateCurrent = animal => () => animal;
+const updateCurrent = animal => () => animal;
+
 export const addAnimal = a =>
   ({ type: ADD_ANIMAL, curry: add(a), });
 
