@@ -1,3 +1,4 @@
+import { actions, } from '../animals';
 import { CORRECT_GUESS, DECREMENT_REMAINING,
    GUESS_ACTIONS,
    GUESS_LETTER,
@@ -6,7 +7,6 @@ INCREMENT_REMAINING,
 REPEAT_GUESS,
  RESET_GUESSES, RESET_REMAINING, } from './constants';
 
-import { actions, } from '../animals';
 const { updateCorrect, } = actions;
 const dec = () => rem => rem - 1;
 const inc = () => rem => rem + 1;

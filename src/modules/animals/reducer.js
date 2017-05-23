@@ -1,6 +1,6 @@
 import { combineReducers, } from 'redux';
-import { ANIMAL_ACTIONS, CORRECT_ANIMAL_ACTIONS, CURRENT_ANIMAL_ACTIONS, PASSED_ANIMAL_ACTIONS, } from './constants';
 import { animals, } from '../../utils';
+import { ANIMAL_ACTIONS, CORRECT_ANIMAL_ACTIONS, CURRENT_ANIMAL_ACTIONS, PASSED_ANIMAL_ACTIONS, } from './constants';
 
 const { ANIMALS, getXRandom, } = animals;
 

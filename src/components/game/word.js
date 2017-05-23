@@ -17,13 +17,11 @@ const Word = ({ chars, word, }) => (
     </Grid>
     <Grid item>
       <Grid container justify="center" direction="row" >
-
         {chars.map((chr, i) => (
           <Grid item key={i}>
             <Letter chr={chr} />
           </Grid>
-      ))}
-
+        ))}
       </Grid>
     </Grid>
   </Grid>

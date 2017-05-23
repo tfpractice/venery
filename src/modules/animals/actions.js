@@ -1,8 +1,8 @@
-import { first, } from 'fenugreek-collections';
-import { addSet, removeSet, } from 'fenugreek-collections';
-import { ADD_ANIMAL, REMOVE_ANIMAL, RESET_ANIMALS, SET_CURRENT_ANIMAL, UPDATE_CORRECT_ANIMALS, } from './constants';
+import { addSet, first, removeSet, } from 'fenugreek-collections';
 import { animals, } from '../../utils';
 import { actions, } from '../words';
+import { ADD_ANIMAL, REMOVE_ANIMAL, RESET_ANIMALS, SET_CURRENT_ANIMAL,
+  UPDATE_CORRECT_ANIMALS, } from './constants';
 
 const { resetWord, } = actions;
 const { ANIMAP, getXRandom, ANIMALS, } = animals;

@@ -7,10 +7,12 @@ import { connect, } from 'react-redux';
 import { Animals, } from '../../modules';
 import Word from './word';
 import GuessForm from './guessform';
+import Letter from './letter';
 
-const stateToProps = state => state;
+const stateToProps = ({ guesses: { letters, }, animals, }) =>
+  ({ animals, letters: [ ...letters, ], });
 
-const Game = (props) => {
+const Game = ({ setAnimal, letters, animals, ...props }) => {
   console.log('props', props);
   return (
     <Grid container justify="center" align="center" direction="column">
@@ -18,13 +20,21 @@ const Game = (props) => {
         <Text type="title">
           I AM THE GAME BOARD
         </Text>
-        <Button accent raised onClick={() => props.setAnimal(props.animals.all[0])}>
+        <Button accent raised onClick={() => setAnimal(animals.all[0])}>
           setCurrentAnimal
         </Button>
       </Grid>
       <Grid item>
         <Word />
         <GuessForm />
+        <Grid container>
+
+          {letters.map((chr, i) => (
+            <Grid item key={i}>
+              <Letter chr={chr} />
+            </Grid>
+          ))}
+        </Grid>
       </Grid>
     </Grid>
   );
