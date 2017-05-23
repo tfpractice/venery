@@ -2,17 +2,20 @@ import React from 'react';
 import Text from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import { connect, } from 'react-redux';
-import { spread, } from 'fenugreek-collections';
+import { first, spread, } from 'fenugreek-collections';
 
 import Letter from './letter';
 
-const stateToProps = ({ word, }) => ({ word, chars: spread(word.toUpperCase()), });
+const stateToProps = ({ animals: { all, }, word, }) => ({ animal: first(all), all, word, chars: spread(word.toUpperCase()), });
 
-const Word = ({ chars, word, }) => (
-  <Grid container justify="center" align="center">
+const Word = ({ animal, chars, word, }) => (
+  <Grid container justify="center" direction="column" align="center">
     <Grid item sm={12}>
-      <Text type="title">
-        I AM THE word {word}
+      <Text align="center" type="display3">
+        {word}
+      </Text>
+      <Text align="center" type="display3">
+        a
       </Text>
     </Grid>
     <Grid item>
@@ -23,6 +26,11 @@ const Word = ({ chars, word, }) => (
           </Grid>
         ))}
       </Grid>
+    </Grid>
+    <Grid item sm={12}>
+      <Text align="center" type="display3">
+        of                                                                                                                {animal}
+      </Text>
     </Grid>
   </Grid>
 );

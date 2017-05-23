@@ -19,11 +19,8 @@ const Game = ({ newAnimals, letters, animals, ...props }) => {
   return (
     <Grid container justify="center" align="center" direction="column">
       <Grid item>
-        <Text type="title">
-          I AM THE GAME BOARD
-        </Text>
         <Button accent raised onClick={() => newAnimals()}>
-          getNewAnimals
+          Start New Game
         </Button>
       </Grid>
       <Grid item>
