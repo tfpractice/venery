@@ -11,6 +11,7 @@ const add = animal => state => addSet(state)(animal);
 const remove = animal => state => removeSet(state)(animal);
 const set = animals => () => animals;
 const update = next => prv => prv.concat(next);
+const dropFirst = () => ([ first, ...rest ]) => rest;
 
 export const updateCurrent = animal => () => animal;
 export const addAnimal = a =>
@@ -41,7 +42,7 @@ export const setAnimal = animal => (dispatch) => {
 export const nextAnimals = (next = getXRandom(ANIMALS, 10)) => (dispatch) => {
   Promise.resolve(resetAnimals(next))
     .then(dispatch)
-    .then(setAnimal(first(next)))
+    .then(() => setAnimal(first(next)))
     .then(dispatch)
     .catch(console.error);
 };
@@ -49,9 +50,5 @@ export const nextAnimals = (next = getXRandom(ANIMALS, 10)) => (dispatch) => {
 export const updateCorrect = corr => (dispatch, getState) =>
   Promise.resolve(setCorrect(corr))
     .then(dispatch)
-    .then(x => resetAnimals(getState().animals.all.slice(1)))
-    .then(dispatch)
-
-  // dispatch({ type: UPDATE_CORRECT_ANIMALS, curry: update(corr), }))
-  // .then(x => dispatch(resetAnimals(getState().animals.all.slice(1))))
-    .catch(console.error);
+    .then(x => nextAnimals(getState().animals.all.slice(1)))
+    .then(dispatch);

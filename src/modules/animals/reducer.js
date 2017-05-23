@@ -16,4 +16,4 @@ PASSED_ANIMAL_ACTIONS.has(type) ? curry(state) : state;
 const current = (state = '', { type, curry, }) =>
 CURRENT_ANIMAL_ACTIONS.has(type) ? curry(state) : state;
 
-export default combineReducers({ all, current, });
+export default combineReducers({ all, current, correct, passed, });
