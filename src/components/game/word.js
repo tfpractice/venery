@@ -29,7 +29,7 @@ const Word = ({ animal, chars, word, }) => (
     </Grid>
     <Grid item sm={12}>
       <Text align="center" type="display3">
-        of                                                                                                                {animal}
+        of                                                                                                                                                        {animal}
       </Text>
     </Grid>
   </Grid>
