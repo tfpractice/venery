@@ -20,8 +20,8 @@ export const getXRandom = (coll, count) => {
   }
   return results;
 };
-
-//
+export const getNewAnimals = (count = 10) => getXRandom(ANIMALS, count);
+export const getGroupName = animal => first(ANIMAP.get(animal));
 
 // export const ALL_NAMES = NAMES.reduce((a = [], c) => a.concat(c), [])
 // .filter(hasFreq(new Set(missingGroups)));

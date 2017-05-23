@@ -12,23 +12,24 @@ import Letter from './letter';
 const stateToProps = ({ guesses: { letters, }, animals, }) =>
   ({ animals, letters: [ ...letters, ], });
 
-const Game = ({ setAnimal, letters, animals, ...props }) => {
-  console.log('props', props);
+const Game = ({ newAnimals, letters, animals, ...props }) => {
+  // console.log('props', props);
+  const a = 0;
+
   return (
     <Grid container justify="center" align="center" direction="column">
       <Grid item>
         <Text type="title">
           I AM THE GAME BOARD
         </Text>
-        <Button accent raised onClick={() => setAnimal(animals.all[0])}>
-          setCurrentAnimal
+        <Button accent raised onClick={() => newAnimals()}>
+          getNewAnimals
         </Button>
       </Grid>
       <Grid item>
         <Word />
         <GuessForm />
         <Grid container>
-
           {letters.map((chr, i) => (
             <Grid item key={i}>
               <Letter chr={chr} />

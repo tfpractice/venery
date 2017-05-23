@@ -1,19 +1,17 @@
-import { addSet, first, removeSet, } from 'fenugreek-collections';
+import { addSet, first, removeSet, spread, } from 'fenugreek-collections';
 import { animals, } from '../../utils';
-
 import { actions, } from '../words';
 
-// import { resetWord, } from '../words/actions';
 import { ADD_ANIMAL, REMOVE_ANIMAL, RESET_ANIMALS, SET_CURRENT_ANIMAL,
   UPDATE_CORRECT_ANIMALS, } from './constants';
 
 const { resetWord, } = actions;
-const { ANIMAP, getXRandom, ANIMALS, } = animals;
+const { getGroupName, getNewAnimals, } = animals;
 
-const add = animal => state => addSet(state)(animal);
+const add = animal => state => spread(addSet(state)(animal));
 const remove = animal => state => removeSet(state)(animal);
-const set = animals => () => animals;
-const update = next => prv => prv.concat(next);
+const set = animals => state => animals || state;
+
 const dropFirst = () => ([ first, ...rest ]) => rest;
 
 const updateCurrent = animal => () => animal;
@@ -23,36 +21,51 @@ export const addAnimal = a =>
 
 export const removeAnimal = a =>
   ({ type: REMOVE_ANIMAL, curry: remove(a), });
-
-export const resetAnimals = animals =>
+  
+export const setAnimals = animals =>
   ({ type: RESET_ANIMALS, curry: set(animals), });
+    
+export const rotateAnimals = () =>
+  ({ type: RESET_ANIMALS, curry: dropFirst(), });
 
 export const setCurrentAnimal = anim =>
 ({ type: SET_CURRENT_ANIMAL, curry: updateCurrent(anim), });
 
-export const setCorrect = anim =>
-({ type: UPDATE_CORRECT_ANIMALS, curry: update(anim), });
+export const addCorrect = anim =>
+  ({ type: UPDATE_CORRECT_ANIMALS, curry: add(anim), });
+
+const stateAnimals = ({ animals: { all, }, }) => all;
 
 export const setAnimal = animal => (dispatch) => {
   Promise.resolve(setCurrentAnimal(animal))
     .then(dispatch)
-    .then(() => first(ANIMAP.get(animal)))
-    .then(w => console.log('first word', w) || w)
+    .then(() => getGroupName(animal))
     .then(resetWord)
     .then(dispatch)
     .catch(console.error);
 };
 
-export const nextAnimals = (next = getXRandom(ANIMALS, 10)) => (dispatch) => {
-  Promise.resolve(resetAnimals(next))
+export const newAnimals = (animals = getNewAnimals(10)) => (dispatch) => {
+  console.log('animals', animals);
+  return Promise.resolve(setAnimals(animals))
     .then(dispatch)
-    .then(() => setAnimal(first(next)))
+    .then(() => first(animals))
+    .then(setAnimal)
+    .then(dispatch)
+    .catch(console.error);
+};
+   
+export const turnAnimals = next => (dispatch, getState) => {
+  Promise.resolve(rotateAnimals(next))
+    .then(dispatch)
+    .then(() => first(stateAnimals(getState())))
+    .then(setAnimal)
     .then(dispatch)
     .catch(console.error);
 };
 
 export const updateCorrect = corr => (dispatch, getState) =>
-  Promise.resolve(setCorrect(corr))
+  Promise.resolve(addCorrect(corr))
     .then(dispatch)
-    .then(x => nextAnimals(getState().animals.all.slice(1)))
+    .then(turnAnimals)
     .then(dispatch);
