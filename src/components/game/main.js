@@ -6,7 +6,6 @@ import { connect, } from 'react-redux';
 
 import { Animals, } from '../../modules';
 import Word from './word';
-import GuessForm from './guessform';
 import Letter from './letter';
 
 const stateToProps = ({ guesses: { letters, }, animals, }) =>
@@ -25,7 +24,6 @@ const Game = ({ newAnimals, letters, animals, ...props }) => {
       </Grid>
       <Grid item>
         <Word />
-        <GuessForm />
         <Grid container>
           {letters.map((chr, i) => (
             <Grid item key={i}>

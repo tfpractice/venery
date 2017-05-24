@@ -3,12 +3,14 @@ import Text from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import { connect, } from 'react-redux';
 import { first, spread, } from 'fenugreek-collections';
-
+import List, { ListItem, ListItemText, ListSubheader, } from 'material-ui/List';
 import Letter from './letter';
+import GuessForm from './guessform';
 
-const stateToProps = ({ animals: { all, }, word, }) => ({ animal: first(all), all, word, chars: spread(word.toUpperCase()), });
+const stateToProps = ({ animals: { all, }, word, definitions: { data, }, }) =>
+({ animal: first(all), definitions: data, word, chars: spread(word.toUpperCase()), });
 
-const Word = ({ animal, chars, word, }) => (
+const Word = ({ animal, chars, word, definitions, }) => (
   <Grid container justify="center" direction="column" align="center">
     <Grid item sm={12}>
       <Text align="center" type="display3">
@@ -28,9 +30,25 @@ const Word = ({ animal, chars, word, }) => (
       </Grid>
     </Grid>
     <Grid item sm={12}>
+      <GuessForm />
+    </Grid>
+    <Grid item sm={12}>
       <Text align="center" type="display3">
-        of                                                                                                                                                        {animal}
+        {`of ${animal}`}
       </Text>
+    </Grid>
+    <Grid item sm={12}>
+      <List dense />
+      <ListSubheader primary>
+        <Text type="headline">
+          Definitions
+        </Text>
+      </ListSubheader>
+      {spread(definitions).map((d, i) => (
+        <ListItem key={i} divider>
+          <ListItemText primary={d.text} secondary={d.source} />
+        </ListItem>
+      ))}
     </Grid>
   </Grid>
 );
