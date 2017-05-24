@@ -16,15 +16,13 @@ class Main extends Component {
     // const { route: { routes, }, } = this.props;
 
     return (
-      <Paper>
-        <Grid container justify="center" style={styles} >
-          <Nav />
-          <Grid item sm={12}>
-            <Game />
-            <Switch />
-          </Grid>
+      <Grid container justify="center" style={styles} >
+        <Nav />
+        <Grid item sm={12}>
+          <Game />
+          <Switch />
         </Grid>
-      </Paper>
+      </Grid>
     );
   }
 }

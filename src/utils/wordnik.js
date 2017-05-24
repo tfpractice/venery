@@ -33,7 +33,7 @@ export const lacksWord = word => def => !hasWord(word)(def);
 export const defLacksWord = word => ({ text, }) => !hasWord(word)(text);
 
 export const SYN_TYPES = new Set([
-  'same-context', 'hypernym', 'synonym',
+  'same-context', 'hypernym', 'synonym', 'rhyme',
 ]);
 
 export const hasType = ({ relationshipType, }) => SYN_TYPES.has(relationshipType);

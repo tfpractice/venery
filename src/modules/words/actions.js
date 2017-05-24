@@ -11,8 +11,6 @@ export const setWord = word =>
 export const resetWord = word => dispatch =>
   Promise.resolve(setWord(word))
     .then(dispatch)
-    .then(a => getWord(word))
-    .then(dispatch)
-    .then(a => getSynonyms(word))
-    .then(dispatch)
+    .then(() => Promise.all([
+      getWord(word), getSynonyms(word), ].map(dispatch)))
     .catch(console.error);

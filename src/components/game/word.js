@@ -6,7 +6,9 @@ import { first, spread, } from 'fenugreek-collections';
 import List, { ListItem, ListItemText, ListSubheader, } from 'material-ui/List';
 import Letter from './letter';
 import GuessForm from './guessform';
-
+import SynonymList from './synonyms';
+import DefinitionList from './definitions';
+import Paper from 'material-ui/Paper';
 const stateToProps = ({ animals: { all, }, word, definitions: { data, }, synonyms, }) =>
 ({
  animal: first(all),
@@ -35,47 +37,32 @@ const Word = ({ animal, chars, word, definitions, synonyms, }) => (
         ))}
       </Grid>
     </Grid>
-    <Grid item sm={12}>
+    <Grid item s={12}>
       <GuessForm />
     </Grid>
-    <Grid item sm={12}>
+    <Grid item s={12}>
       <Text align="center" type="display3">
         {`of ${animal}`}
       </Text>
     </Grid>
     <Grid item >
-      <List dense />
-      <ListSubheader primary>
-        <Text type="headline">
-          Definitions
-        </Text>
-      </ListSubheader>
-      {spread(definitions).map((d, i) => (
-        <ListItem key={i} divider>
-          <ListItemText primary={d.text} secondary={d.source} />
-        </ListItem>
-      ))}
+      <DefinitionList definitions={definitions} />
+    </Grid>
+    <Grid item >
+      <List >
+        <ListSubheader primary>
+          <Text type="headline" secondary>
+            Related Words
+          </Text>
+        </ListSubheader>
+        {synonyms.map(s =>
+          (<ListItem key={s.relationshipType}>
+            <SynonymList {...s} />
+          </ListItem>)
+        )}
+      </List>
     </Grid>
 
-    <Grid item >
-      <Grid container>
-        {spread(synonyms).map((s, i) => (
-          <Grid item key={i}>
-            <List >
-              <ListSubheader primary>
-                <Text type="headline">
-                  {s.relationshipType}
-                </Text>
-              </ListSubheader>
-              {s.words.map((w, j) => (
-                <ListItem key={j} divider>
-                  <ListItemText primary={w} />
-                </ListItem>))}
-            </List>
-          </Grid>
-        ))}
-      </Grid>
-    </Grid>
   </Grid>
 );
 
