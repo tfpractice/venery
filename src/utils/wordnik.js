@@ -12,10 +12,16 @@ const limit = 10;
 const partOfSpeech = 'noun';
 const useCanonical = true;
 const includeRelated = true;
-const params = {
+const limitPerRelationshipType = 10;
+const defParams = {
  limit,
  useCanonical,
  includeRelated,
+ api_key,
+};
+const synParams = {
+ useCanonical,
+ limitPerRelationshipType,
  api_key,
 };
 
@@ -26,8 +32,16 @@ export const hasWord = word => def => nlp(def).normalize().match(forms(word)).fo
 export const lacksWord = word => def => !hasWord(word)(def);
 export const defLacksWord = word => ({ text, }) => !hasWord(word)(text);
 
+export const SYN_TYPES = new Set([
+  'same-context', 'hypernym', 'synonym',
+]);
+
+export const hasType = ({ relationshipType, }) => SYN_TYPES.has(relationshipType);
 export const requestDef = word =>
-  axios.get(`${WORDNIK_BASE}/${word}/definitions`, { params, })
+  axios.get(`${WORDNIK_BASE}/${word}/definitions`, { params: defParams, })
     .then(({ data, }) => data);
     
-requestDef('exaltation').then(defs => console.log('defs', defs) || defs);
+export const requestSyn = word =>
+  axios.get(`${WORDNIK_BASE}/${word}/relatedWords`, { params: synParams, })
+    .then(({ data, }) => data);
+    

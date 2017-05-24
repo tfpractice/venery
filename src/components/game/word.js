@@ -7,10 +7,16 @@ import List, { ListItem, ListItemText, ListSubheader, } from 'material-ui/List';
 import Letter from './letter';
 import GuessForm from './guessform';
 
-const stateToProps = ({ animals: { all, }, word, definitions: { data, }, }) =>
-({ animal: first(all), definitions: data, word, chars: spread(word.toUpperCase()), });
+const stateToProps = ({ animals: { all, }, word, definitions: { data, }, synonyms, }) =>
+({
+ animal: first(all),
+ definitions: data,
+ word,
+ synonyms: synonyms.data,
+ chars: spread(word.toUpperCase()),
+});
 
-const Word = ({ animal, chars, word, definitions, }) => (
+const Word = ({ animal, chars, word, definitions, synonyms, }) => (
   <Grid container justify="center" direction="column" align="center">
     <Grid item sm={12}>
       <Text align="center" type="display3">
@@ -37,7 +43,7 @@ const Word = ({ animal, chars, word, definitions, }) => (
         {`of ${animal}`}
       </Text>
     </Grid>
-    <Grid item sm={12}>
+    <Grid item >
       <List dense />
       <ListSubheader primary>
         <Text type="headline">
@@ -49,6 +55,26 @@ const Word = ({ animal, chars, word, definitions, }) => (
           <ListItemText primary={d.text} secondary={d.source} />
         </ListItem>
       ))}
+    </Grid>
+
+    <Grid item >
+      <Grid container>
+        {spread(synonyms).map((s, i) => (
+          <Grid item key={i}>
+            <List >
+              <ListSubheader primary>
+                <Text type="headline">
+                  {s.relationshipType}
+                </Text>
+              </ListSubheader>
+              {s.words.map((w, j) => (
+                <ListItem key={j} divider>
+                  <ListItemText primary={w} />
+                </ListItem>))}
+            </List>
+          </Grid>
+        ))}
+      </Grid>
     </Grid>
   </Grid>
 );
