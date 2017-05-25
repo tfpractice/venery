@@ -5,7 +5,7 @@ import { ANIMAL_ACTIONS, CORRECT_ANIMAL_ACTIONS, CURRENT_ANIMAL_ACTIONS,
 
 const { ANIMALS, getXRandom, } = animals;
 
-const all = (state = getXRandom(ANIMALS, 10), { type, curry, }) =>
+const all = (state = [], { type, curry, }) =>
 ANIMAL_ACTIONS.has(type) ? curry(state) : state;
 
 const correct = (state = [], { type, curry, }) =>
