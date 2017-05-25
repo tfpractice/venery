@@ -35,6 +35,9 @@ export const defLacksWord = word => ({ text, }) => !hasWord(word)(text);
 export const SYN_TYPES = new Set([
   'same-context', 'hypernym', 'synonym', 'rhyme',
 ]);
+const findName = text =>
+axios.get('http://taxonfinder.org/api/find', { params: { text, }, })
+  .then(found => console.log('found', found) || found);
 
 export const hasType = ({ relationshipType, }) => SYN_TYPES.has(relationshipType);
 export const requestDef = word =>
@@ -45,3 +48,15 @@ export const requestSyn = word =>
   axios.get(`${WORDNIK_BASE}/${word}/relatedWords`, { params: synParams, })
     .then(({ data, }) => data);
     
+requestDef('dog').then(d => console.log('d', d) || d)
+  .then(defs => defs.map(d => d.text))
+  .then(d => console.log('d', d) || d)
+
+  // .then(defs => Promise.all(defs.map(findName)))
+  // .then(d => console.log('d', d))
+;
+
+// .then()
+// ?text=The quick Vulpes jumped over the lazy Canis lupus familiaris
+
+// findName('jklol Canis Familiaris');
