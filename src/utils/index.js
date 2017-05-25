@@ -4,6 +4,7 @@ import * as wordnik from './wordnik';
 import * as taxonomy from './taxonomy';
 
 export * from './themer';
+export * from './thenable';
 export * from './forms';
 
 export { animals, rqUtils, wordnik, taxonomy, };

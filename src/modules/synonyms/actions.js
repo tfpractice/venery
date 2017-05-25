@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { map, } from 'fenugreek-collections';
-import { rqUtils, wordnik, } from '../../utils';
+import { filtBy, mapTo, rqUtils, wordnik, } from '../../utils';
 import { SET_SYNONYMS, } from './constants';
 
 const { rqActions, } = rqUtils;
@@ -8,8 +8,9 @@ const { rqActions, } = rqUtils;
 // const { requestSyn, getSynText, synData, synLacksWord, } = wordnik;
 const { requestSyn, hasType, } = wordnik;
 
-const mapTo = fn => coll => map(coll)(fn);
-const filterBy = fn => coll => coll.filter(fn);
+//
+// const mapTo = fn => coll => map(coll)(fn);
+// const filtBy = fn => coll => coll.filter(fn);
 
 const synReqPending = rqActions('SYNONYM_REQUEST').pending;
 const synReqFailure = rqActions('SYNONYM_REQUEST').failure;
@@ -27,7 +28,7 @@ Promise.resolve(synReqPending(wrd))
   .then(dispatch)
   .then(() => requestSyn(wrd))
   .then(s => console.log('s', s) || s)
-  .then(filterBy(hasType))
+  .then(filtBy(hasType))
 
   // .then(mapTo(synData))
   // .then(d => d.slice(0, 3))

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import nlp from 'compromise';
+import { filtBy, getData, mapTo, } from './thenable';
 export const WORDNIK_BASE = 'http://api.wordnik.com:80/v4/word.json';
 export const API_KEY = process.env.REACT_APP_VENERY_WORDNIK_KEY;
 const api_key = API_KEY;
@@ -35,16 +36,14 @@ export const defLacksWord = word => ({ text, }) => !hasWord(word)(text);
 export const SYN_TYPES = new Set([
   'same-context', 'hypernym', 'synonym', 'rhyme',
 ]);
-const findName = text =>
-axios.get('http://taxonfinder.org/api/find', { params: { text, }, })
-  .then(found => console.log('found', found) || found);
 
 export const hasType = ({ relationshipType, }) => SYN_TYPES.has(relationshipType);
 export const requestDef = word =>
   axios.get(`${WORDNIK_BASE}/${word}/definitions`, { params: defParams, })
-    .then(({ data, }) => data);
-    
+    .then(getData)
+    .then(filtBy(defLacksWord(word)))
+    .then(mapTo(defData));
+
 export const requestSyn = word =>
   axios.get(`${WORDNIK_BASE}/${word}/relatedWords`, { params: synParams, })
-    .then(({ data, }) => data);
-    
+    .then(getData);
