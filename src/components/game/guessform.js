@@ -10,7 +10,9 @@ const BaseGuess = ({ handleSubmit, dispatch, onSubmit, reset, }) => (
     <Field
       name="guess"
       component={renderText}
-      onKeyPress={({ key, }) => Promise.resolve(onSubmit(key)).then(reset)}
+      onKeyPress={({ key, }) => {
+        console.log('key', key); return Promise.resolve(onSubmit(key)).then(reset);
+      }}
     />
   </form>
   );
