@@ -48,15 +48,3 @@ export const requestSyn = word =>
   axios.get(`${WORDNIK_BASE}/${word}/relatedWords`, { params: synParams, })
     .then(({ data, }) => data);
     
-requestDef('dog').then(d => console.log('d', d) || d)
-  .then(defs => defs.map(d => d.text))
-  .then(d => console.log('d', d) || d)
-
-  // .then(defs => Promise.all(defs.map(findName)))
-  // .then(d => console.log('d', d))
-;
-
-// .then()
-// ?text=The quick Vulpes jumped over the lazy Canis lupus familiaris
-
-// findName('jklol Canis Familiaris');

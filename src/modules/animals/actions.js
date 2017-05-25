@@ -1,7 +1,7 @@
 import { addSet, first, removeSet, spread, } from 'fenugreek-collections';
 import { animals, } from '../../utils';
 import { actions, } from '../words';
-
+import { binomial, } from '../../utils/taxonomy';
 import { ADD_ANIMAL, REMOVE_ANIMAL, RESET_ANIMALS, SET_CURRENT_ANIMAL,
   UPDATE_CORRECT_ANIMALS, } from './constants';
 
@@ -42,6 +42,7 @@ export const setAnimal = animal => (dispatch) => {
     .then(() => getGroupName(animal))
     .then(resetWord)
     .then(dispatch)
+    .then(() => binomial(animal))
     .catch(console.error);
 };
 
