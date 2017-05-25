@@ -37,10 +37,10 @@ const Word = ({ animal, chars, word, definitions, synonyms, }) => (
         ))}
       </Grid>
     </Grid>
-    <Grid item s={12}>
+    <Grid item sm={12}>
       <GuessForm />
     </Grid>
-    <Grid item s={12}>
+    <Grid item sm={12}>
       <Text align="center" type="display3">
         {`of ${animal}`}
       </Text>
