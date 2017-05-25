@@ -2,8 +2,9 @@ import React, { Component, } from 'react';
 import { connect, } from 'react-redux';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
-import { Switch, } from 'react-router-dom';
+import { Route, Switch, } from 'react-router-dom';
 
+import About from './about';
 import Nav from './nav';
 import { Game, } from './game';
 
@@ -19,8 +20,10 @@ class Main extends Component {
       <Grid container justify="center" style={styles} >
         <Nav />
         <Grid item sm={12}>
-          <Game />
-          <Switch />
+          <Switch >
+            <Route path="/" exact component={About} />
+            <Route path="/play" component={Game} />
+          </Switch>
         </Grid>
       </Grid>
     );
