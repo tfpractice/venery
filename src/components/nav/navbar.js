@@ -16,14 +16,14 @@ const Nav = ({ match, ...props }) => {
             <Grid container direction="row" align="center">
               <Link to="/" >
                 <Text type="headline" secondary >
-                Venery
-              </Text>
+                  Venery
+                </Text>
               </Link>
 
             </Grid>
           </Grid>
           <Grid item>
-            <Link to="/play" replace >
+            <Link to="/play" >
               <Text type="headline" secondary >
               New game
             </Text>

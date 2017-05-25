@@ -1,7 +1,6 @@
 import { actions, } from '../animals';
-
-// export const newAnimals = (animals = getNewAnimals(10)) => (dispatch) => {
 import { END_GAME, NEW_GAME, } from './constants';
+
 const { newAnimals, } = actions;
 
 const start = () => state => ({ inPlay: true, });
