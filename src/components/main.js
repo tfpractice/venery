@@ -18,7 +18,7 @@ class Main extends Component {
     return (
       <Grid container justify="center" style={styles} >
         <Nav />
-        <Grid item sm={12}>
+        <Grid item xs={11} sm={12}>
           <Switch >
             <Route path="/play" component={Game} />
             <Route path="/" exact component={About} />

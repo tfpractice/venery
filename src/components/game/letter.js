@@ -7,17 +7,17 @@ const mapStateToProps = ({ guesses: { letters, }, }, { chr, }) =>
 ({ isGuessed: (letters).has(chr.toUpperCase()), });
 
 const style = {
-  height: 100,
-  width: 100,
-  margin: 20,
-  display: 'inline-block',
-  background: '#666',
+  // height: 100,
+  // width: '56px',
+  // margin: 20,
+  // display: 'inline-block',
+  background: 'rgba(255,0,255,.2)',
 };
 
 const Letter = ({ chr, isGuessed, }) => (
   <Paper style={style} elevation={5}>
-    <Text align="center" type="display3">
-      {isGuessed ? ` ${chr} ` : ' ___ ' }
+    <Text secondary align="center" type="display3">
+      {isGuessed ? ` ${chr} ` : '_' }
     </Text>
   </Paper>);
 

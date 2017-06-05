@@ -11,25 +11,23 @@ const styles = { paddingTop: '5rem', };
 
 const stateToProps = state => (state);
 
-const About = ({}) =>
-
-   (
-     <Grid container justify="center" style={styles} >
-       <Grid item sm={6}>
-         <Card raised>
-           <CardHeader title="Welcome to Venery" />
-           <CardContent>
-             <Text type="subheading">
+const About = ({}) => (
+  <Grid container justify="center" style={styles} >
+    <Grid item xs={11}>
+      <Card raised>
+        <CardHeader title="Welcome to Venery" />
+        <CardContent>
+          <Text type="subheading">
                A small Guess-the-word style application based on the
                collective noun forms for animals
              </Text>
-           </CardContent>
-           <CardActions>
-             <Button compact>Learn More</Button>
-           </CardActions>
-         </Card>
-       </Grid>
-     </Grid>
+        </CardContent>
+        <CardActions>
+          <Button compact>Learn More</Button>
+        </CardActions>
+      </Card>
+    </Grid>
+  </Grid>
     );
 
 export default (About);

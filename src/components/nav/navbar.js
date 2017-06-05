@@ -4,14 +4,10 @@ import Toolbar from 'material-ui/Toolbar';
 import Text from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import { Link, } from 'react-router-dom';
-import { connect, } from 'react-redux';
-import { Game as GameMod, } from '../../modules';
 
-const Nav = ({ match, ...props, startGame, }) => {
-  const a = 0;
-
-  console.log('NAV props', props);
-
+const Nav = ({ match, ...props }) => {
+  console.log('match', match);
+  console.log('props', props);
   return (
     <AppBar>
       <Toolbar>
@@ -28,7 +24,7 @@ const Nav = ({ match, ...props, startGame, }) => {
           </Grid>
           <Grid item>
             <Link to="/play" >
-              <Text type="headline" secondary onClick={startGame} >
+              <Text type="headline" secondary >
                 New game
               </Text>
             </Link>
@@ -39,4 +35,4 @@ const Nav = ({ match, ...props, startGame, }) => {
   );
 };
 
-export default connect(null, GameMod.actions)(Nav);
+export default Nav;
