@@ -19,13 +19,13 @@ import List, { ListItem, ListItemText, ListSubheader, } from 'material-ui/List';
 // };
 
 const DefinitionList = ({ definitions, }) => (
-  <List >
+  <List dense >
     <ListSubheader primary>
       <Text type="headline">
         Definitions
       </Text>
     </ListSubheader>
-    { (definitions).map((d, i) => (
+    { definitions.map((d, i) => (
       <ListItem key={i} divider>
         <ListItemText primary={d.text} secondary={d.source} />
       </ListItem>
