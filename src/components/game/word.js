@@ -3,12 +3,13 @@ import Text from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import { connect, } from 'react-redux';
 import { first, spread, } from 'fenugreek-collections';
-import List, { ListItem, ListItemText, ListSubheader, } from 'material-ui/List';
-import Letter from './letter';
+
 import GuessForm from './guessform';
 import SynonymList from './synonyms';
+import Guesses from './guesses';
 import DefinitionList from './definitions';
-import Paper from 'material-ui/Paper';
+import CharList from './characters';
+
 const stateToProps = ({ animals: { all, }, guesses: { letters, }, word, definitions: { data, }, synonyms, }) =>
 ({
  animal: first(all),
@@ -30,13 +31,7 @@ const Word = ({ animal, chars, word, letters, definitions, synonyms, }) => (
       </Text>
     </Grid>
     <Grid item xs={11}>
-      <Grid container justify="center" >
-        {chars.map((chr, i) => (
-          <Grid item xs key={i}>
-            <Letter chr={chr} />
-          </Grid>
-        ))}
-      </Grid>
+      <CharList chars={chars} />
     </Grid>
     <Grid item xs={12}>
       <Text align="center" type="display3">
@@ -47,13 +42,7 @@ const Word = ({ animal, chars, word, letters, definitions, synonyms, }) => (
       <GuessForm />
     </Grid>
     <Grid item xs={11}>
-      <Grid container justify="center" >
-        {letters.filter(l => !new Set(chars).has(l)).map((chr, i) => (
-          <Grid item xs key={i}>
-            <Letter chr={chr} />
-          </Grid>
-        ))}
-      </Grid>
+      <Guesses />
     </Grid>
     <Grid item xs={11}>
       <Grid container>
@@ -62,23 +51,20 @@ const Word = ({ animal, chars, word, letters, definitions, synonyms, }) => (
         </Grid>
         <Grid item xs sm={6} >
           <Grid container justify="center">
-
-            {synonyms.map(s =>
-              (
-
-                <Grid item xs={11} sm={5} key={s.relationshipType}>
-                  <SynonymList {...s} />
-
-                </Grid>
-
-              )
-            )}
+            <Grid item xs={11} >
+              <Text color="accent" align="center" type="headline">
+                Related Words
+              </Text>
+            </Grid>
+            {synonyms.map(s => (
+              <Grid item xs={11} key={s.relationshipType}>
+                <SynonymList {...s} />
+              </Grid>
+            ))}
           </Grid>
         </Grid>
       </Grid>
-
     </Grid>
-
   </Grid>
 );
 

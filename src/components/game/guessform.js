@@ -5,14 +5,16 @@ import { connect, } from 'react-redux';
 import { ClearForm, renderText, } from '../../utils';
 import { Guesses, } from '../../modules';
 
+const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+const alphaSet = new Set(alphabet);
+
 const BaseGuess = ({ handleSubmit, dispatch, onSubmit, reset, }) => (
   <form onSubmit={handleSubmit} >
     <Field
       name="guess"
       component={renderText}
-      onKeyPress={({ key, }) => {
-        console.log('key', key); return Promise.resolve(onSubmit(key)).then(reset);
-      }}
+      onKeyPress={({ key, }) =>
+        alphaSet.has(key) && Promise.resolve(onSubmit(key)).then(reset)}
     />
   </form>
   );
