@@ -5,17 +5,14 @@ import { connect } from 'react-redux';
 
 import { Game as GameMod } from '../../modules';
 import Word from './word';
+import NullWord from './nullWord';
 
-const stateToProps = ({ game: { inPlay }, guesses: { letters }, animals }) => ({
-  animals,
-  letters: [ ...letters ],
-  inPlay,
-});
+const stateToProps = ({ word }) => ({ word });
 
-const Game = ({ startGame, inPlay, letters, animals, ...props }) =>
+const Game = ({ word }) =>
   (<Grid container justify="center" align="center" direction="column">
     <Grid item xs={11}>
-      <Word />
+      {word ? <Word /> : <NullWord />}
     </Grid>
   </Grid>);
 

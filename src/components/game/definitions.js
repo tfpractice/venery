@@ -1,11 +1,11 @@
 import React from 'react';
 import Text from 'material-ui/Typography';
-import List, { ListItem, ListItemText, ListSubheader, } from 'material-ui/List';
+import List, { ListItem, ListItemText, ListSubheader } from 'material-ui/List';
 
-const DefinitionList = ({ definitions, }) =>
+const DefinitionList = ({ definitions }) =>
   (<List dense>
     <ListSubheader color="primary">
-      <Text color="accent" align="center" type="headline">
+      <Text align="center" type="headline">
         Definitions
       </Text>
     </ListSubheader>

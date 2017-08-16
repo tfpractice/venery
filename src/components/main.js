@@ -12,7 +12,7 @@ const styles = { paddingTop: '5rem' };
 const stateToProps = ({ game: { inPlay }}) => ({ inPlay });
 
 const Main = () =>
-  (<Grid container justify="center" style={styles}>
+  (<Grid container align="center" justify="center" style={styles}>
     <Grid item xs={12}>
       <Nav />
     </Grid>

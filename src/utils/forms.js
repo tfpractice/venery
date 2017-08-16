@@ -9,10 +9,6 @@ export const ClearForm = form =>
     onSubmitSuccess,
     enableReinitialize: true,
   })(form);
-export const ClearHOC = reduxForm({
-  onSubmitSuccess,
-  enableReinitialize: true,
-});
 
 export const renderText = ({ input, meta: { error: e }, ...rest }) =>
   <TextField fullWidth inputProps={input} error={e} {...rest} />;

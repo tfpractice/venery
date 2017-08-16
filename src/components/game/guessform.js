@@ -1,14 +1,14 @@
 import React from 'react';
+import withStyles from 'material-ui/styles/withStyles';
 import { Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { withProps } from 'recompose';
 
-import { ClearForm, renderText } from '../../utils';
 import { Guesses } from '../../modules';
+import { ClearForm, renderText } from '../../utils';
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const alphaSet = new Set(alphabet);
-const style = { backgroundColor: 'rgba(255,0,255,0.5)' };
 
 const pMap = ({ reset, onSubmit }) => ({
   press: ({ key }) =>
@@ -17,11 +17,16 @@ const pMap = ({ reset, onSubmit }) => ({
 
 const WithPress = withProps(pMap);
 
-const BaseGuess = ({ handleSubmit, press }) =>
-  (<form onSubmit={handleSubmit} style={style}>
+const Styled = withStyles(
+  theme => ({ field: { backgroundColor: 'rgba(38,166,154,0.5)' }}),
+  { name: 'GuessForm' }
+);
+
+const BaseGuess = ({ handleSubmit, press, classes }) =>
+  (<form onSubmit={handleSubmit} className={classes.field}>
     <Field name="guess" component={renderText} onKeyPress={press} />
   </form>);
-const ReduxGuess = ClearForm(WithPress(BaseGuess));
+const ReduxGuess = ClearForm(WithPress(Styled(BaseGuess)));
 
 const GuessForm = ({ guessLetter, formID }) =>
   <ReduxGuess form={'guessChar'} onSubmit={guessLetter} />;

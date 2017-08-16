@@ -1,25 +1,15 @@
 html {
-    /*background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url('/images/butterfly.jpg');
-}*/
 }
 body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-color: #fff9e7;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url('/images/butterfly.jpg');
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #fff9e7;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('/images/butterfly.jpg');
 }
 #root {
-    background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(48, 48, 48, 0.8);
 }
-/*
-backgroundPosition: 'center',
-backgroundImage: `url('/images/butterfly.jpg')`,
-backgroundSize: 'cover',
-backgroundRepeat: 'no-repeat'*/

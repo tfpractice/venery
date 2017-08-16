@@ -11,11 +11,11 @@ import DefinitionList from './definitions';
 import CharList from './characters';
 
 const stateToProps = ({
+  word,
+  synonyms,
   animals: { all },
   guesses: { letters },
-  word,
   definitions: { data },
-  synonyms,
 }) => ({
   animal: first(all),
   definitions: data,
@@ -61,7 +61,7 @@ const Word = ({ animal, chars, word, letters, definitions, synonyms }) =>
         <Grid item xs={12} sm>
           <Grid container justify="center">
             <Grid item xs={11}>
-              <Text color="accent" align="center" type="headline">
+              <Text align="center" type="headline">
                 Related Words
               </Text>
             </Grid>
