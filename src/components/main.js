@@ -9,16 +9,9 @@ import Nav from './nav';
 import { Game } from './game';
 
 const styles = {
-    // backgroundPosition: 'center',
-    // backgroundImage: `url('/images/butterfly.jpg')`,
-    // backgroundSize: 'cover',
-    // backgroundRepeat: 'no-repeat',
     paddingTop: '5rem',
-    // backgroundColor: 'rgba(128,128,128,0.8)',
 };
-// export const pjStyle = url => ({
-//
-// });
+
 const stateToProps = ({ game: { inPlay } }) => ({ inPlay });
 
 class Main extends Component {
