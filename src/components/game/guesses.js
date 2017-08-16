@@ -1,15 +1,13 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
-import { connect, } from 'react-redux';
+import { connect } from 'react-redux';
+
 import CharList from './characters';
 
 const newGuess = word => str => !new Set(word).has(str);
+const wrongFilter = lSet => word => [ ...lSet ].filter(newGuess(word));
+const mapState = ({ guesses, word }) => ({ xGuesses: wrongFilter(guesses.letters)(word) });
 
-const stateToProps = ({ guesses: { letters, }, word, }) => ({ xGuesses: [ ...letters, ].filter(newGuess(word)), });
+const Guesses = ({ xGuesses }) => <CharList chars={xGuesses} />;
 
-const Guesses = ({ xGuesses, }) => (
-  <CharList chars={xGuesses} />
-
-);
-
-export default connect(stateToProps)(Guesses);
+export default connect(mapState)(Guesses);

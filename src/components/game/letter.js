@@ -1,25 +1,32 @@
 import React from 'react';
-import { connect, } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
-import { createStyleSheet, withStyles, } from 'material-ui/styles';
+import { connect } from 'react-redux';
+import { withStyles } from 'material-ui/styles';
 
-const mapStateToProps = ({ guesses: { letters, }, word, }, { chr, }) =>
-({
- isGuessed: (letters).has(chr.toUpperCase()),
- isCorrect: chr && (new Set(word.toUpperCase()).has(chr.toUpperCase())),
+const guessed = lSet => chr => lSet.has(chr.toUpperCase());
+const correct = wrd => chr =>
+  chr && new Set(wrd.toUpperCase()).has(chr.toUpperCase());
+
+const mapState = ({ guesses: { letters }, word }, { chr }) => ({
+  isGuessed: guessed(letters)(chr),
+  isCorrect: correct(word)(chr),
+  colorBool: guessed(letters)(chr) && correct(word)(chr),
 });
 
-const styles = createStyleSheet('Letter', theme => ({
-    right: { background: '#009688', },
-    wrong: { background: '#F50057', },
-}));
+const Styled = withStyles(
+  theme => ({
+    right: { background: theme.palette.primary[500] },
+    wrong: { background: theme.palette.accent.A400 },
+  }),
+  { name: 'Letter' }
+);
 
-const Letter = ({ chr, classes, isGuessed, isCorrect, }) => (
-  <Paper className={(isGuessed && isCorrect) ? classes.right : classes.wrong} elevation={5}>
-    <Text secondary align="center" type="display3">
-      {isGuessed ? ` ${chr} ` : '_' }
+const Letter = ({ chr, classes, isGuessed, colorBool, isCorrect }) =>
+  (<Paper className={colorBool ? classes.right : classes.wrong} elevation={5}>
+    <Text color="secondary" align="center" type="display3">
+      {isGuessed ? ` ${chr} ` : ` _ `}
     </Text>
   </Paper>);
 
-export default connect(mapStateToProps)(withStyles(styles)(Letter));
+export default connect(mapState)(Styled(Letter));

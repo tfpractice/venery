@@ -3,32 +3,31 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Text from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
-import { Link, } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const Nav = ({ match, ...props }) => (
-  <AppBar>
-    <Toolbar>
-      <Grid container justify="space-between" align="center">
-        <Grid item>
-          <Grid container direction="row" align="center">
-            <Link to="/" >
-              <Text type="headline" secondary >
-                  Venery
-                </Text>
-            </Link>
+import { Game as GameMod } from '../../modules';
 
-          </Grid>
-        </Grid>
-        <Grid item>
-          <Link to="/play" >
-            <Text type="headline" secondary >
-                New game
-              </Text>
-          </Link>
-        </Grid>
-      </Grid>
-    </Toolbar>
-  </AppBar>
-  );
+const Nav = ({ match, startGame }) =>
+    <AppBar>
+        <Toolbar>
+            <Grid container justify="space-between" align="center">
+                <Grid item>
+                    <Link to="/">
+                        <Text type="headline" color="secondary">
+                            Venery
+                        </Text>
+                    </Link>
+                </Grid>
+                <Grid item>
+                    <Link to="/play" onClick={startGame}>
+                        <Text type="headline" color="secondary">
+                            New game
+                        </Text>
+                    </Link>
+                </Grid>
+            </Grid>
+        </Toolbar>
+    </AppBar>;
 
-export default Nav;
+export default connect(null, GameMod.actions)(Nav);
