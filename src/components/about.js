@@ -1,9 +1,9 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
-import Card, { CardContent, CardHeader, } from 'material-ui/Card';
+import Card, { CardContent, CardHeader } from 'material-ui/Card';
 
-const styles = { paddingTop: '5rem', };
+const styles = { paddingTop: '5rem' };
 
 const About = () =>
   (<Grid container justify="center" align="center" style={styles}>
