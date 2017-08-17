@@ -36,6 +36,7 @@
     "compromise": "^10.7.1",
     "fenugreek-collections": "^1.2.0-0",
     "material-ui": "next",
+    "material-ui-icons": "^1.0.0-alpha.19",
     "pluralize": "^6.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
