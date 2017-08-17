@@ -13,23 +13,21 @@ import Slide from 'material-ui/transitions/Slide';
 import { compose, withHandlers, withState } from 'recompose';
 import { withStyles } from 'material-ui/styles';
 
-const mapState = ({ animals }) => {
-  console.log('animals', animals);
-  return { animals };
-};
+const mapState = ({ animals, guesses }) => ({
+  animals,
+  remaining: guesses.remaining,
+});
 const Connected = connect(mapState);
 
-//
-const Styled = withStyles(theme => ({ paper: { backgroundColor: 'rgba(238,238,238,0.85)' }}));
+const Styled = withStyles(theme => ({ paper: { backgroundColor: 'rgba(64,64,64,0.85)' }}));
 
 const withModal = compose(
-  withState('open', 'turn', false),
+  withState('open', 'turn', ({ remaining }) => !remaining),
   withHandlers({ toggle: ({ turn }) => () => turn(x => !x) })
 );
 
 const Modal = (props) => {
-  const { classes, open, toggle } = props;
-  let view;
+  const { classes, open, animals, toggle } = props;
 
   return (
     <Grid container align="center">
@@ -43,6 +41,7 @@ const Modal = (props) => {
           onRequestClose={toggle}
           transition={<Slide direction="up" />}
         >
+          <DialogTitle>Overview </DialogTitle>
           <DialogContent>
             <AppBar>
               <ToolBar>
@@ -60,11 +59,24 @@ const Modal = (props) => {
               <Grid item xs={12} md>
                 <List>
                   <ListSubheader>Correct</ListSubheader>
+                  {animals.correct.map(a =>
+                    (<ListItem key={a.animal}>
+                      <ListItemText primary={`a ${a.word} of ${a.animal}`} />
+                    </ListItem>)
+                  )}
                 </List>
               </Grid>
               <Grid item xs={12} md>
                 <List>
                   <ListSubheader>Incorrect</ListSubheader>
+                  {animals.passed.map(a =>
+                    (<ListItem key={a.animal}>
+                      <ListItemText
+                        primary={`a ${a.word} of ${a.animal}`}
+                        secondary={`guesses ${a.letters.join(',')}`}
+                      />
+                    </ListItem>)
+                  )}
                 </List>
               </Grid>
             </Grid>

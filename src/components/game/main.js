@@ -7,10 +7,7 @@ import { Game as GameMod } from '../../modules';
 import Word from './word';
 import NullWord from './nullWord';
 
-const stateToProps = ({ ...state, word }) => {
-  console.log('state', state);
-  return { word };
-};
+const stateToProps = ({ ...state, word }) => ({ word });
 
 const Game = ({ word }) =>
   (<Grid container justify="center" align="center" direction="column">

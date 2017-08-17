@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Collapse from 'material-ui/transitions/Collapse';
 import { withState, withHandlers, compose } from 'recompose';
 import Divider from 'material-ui/Divider';
-import Card, { CardHeader, CardActions, CardMedia } from 'material-ui/Card';
+import Card, { CardHeader, CardActions, CardContent } from 'material-ui/Card';
 
 const withSwitch = compose(
   withState('open', 'flip', false),
@@ -34,13 +34,13 @@ const Forfeit = ({ word, open, toggle }) =>
           </Grid>
         </CardActions>
         <Divider style={dStyle} />
-        <CardMedia>
+        <CardContent>
           <Collapse in={open}>
             <Text align="center" type="display3">
               {word}
             </Text>
           </Collapse>
-        </CardMedia>
+        </CardContent>
       </Card>
     </Grid>
   </Grid>);

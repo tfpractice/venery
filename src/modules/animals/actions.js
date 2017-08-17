@@ -88,7 +88,13 @@ export const updateCorrect = animal => (dispatch, getState) =>
     .then(dispatch);
 
 export const updatePassed = animal => (dispatch, getState) =>
-  Promise.resolve(addPassed({ animal, word: getState().word }))
+  Promise.resolve(
+    addPassed({
+      animal,
+      word: getState().word,
+      letters: [ ...getState().guesses.letters ],
+    })
+  )
     .then(dispatch)
     .then(turnAnimals)
     .then(dispatch);

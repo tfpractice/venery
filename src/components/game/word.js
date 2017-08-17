@@ -34,7 +34,7 @@ const Word = ({ animal, animals, chars, word, definitions, synonyms }) =>
   (<Grid container justify="center" align="center">
     <Toolbar>
       <Stats />
-      {animals.all.map(a => <Chip label={a} />)}
+      {animals.all.map(a => <Chip key={a} label={a} />)}
     </Toolbar>{' '}
     <Grid item xs>
       <Text align="center" type="display3">
